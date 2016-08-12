@@ -34,9 +34,6 @@ public class NativeUtil {
         if (bitmap == null)
             throw new RuntimeException("The bitmap object is null in NativeUtil");
 
-        // 创建本地压缩图片保存目录
-        FileUtils.makeDir(DirConstants.DIR_COMPRESS);
-
         String compressedImgSavedPath = DirConstants.DIR_COMPRESS + "compressed_" + System.currentTimeMillis();
         compressBitmap(bitmap, 50, compressedImgSavedPath, true, listener);
 
@@ -56,6 +53,8 @@ public class NativeUtil {
                                       final String compressToPath,
                                       final boolean optimize,
                                       final OnImgCompressListener listener) {
+        // 创建本地压缩图片保存目录
+        FileUtils.makeDir(compressToPath);
 
         final Bitmap bitmapCopy;
         final int w = bitmap.getWidth();
@@ -65,14 +64,14 @@ public class NativeUtil {
         Rect rect = new Rect(0, 0, w, h);
         canvas.drawBitmap(bitmap, null, rect, null);
 
-        new CompressAsyncTask(bitmapCopy,w,h,compressQuality,compressToPath,optimize,listener).execute();
+        new CompressAsyncTask(bitmapCopy, w, h, compressQuality, compressToPath, optimize, listener).execute();
 
     }
 
     /**
      * 压缩图片异步AsyncTask
      */
-     private static class CompressAsyncTask extends AsyncTask<String,Integer,String>{
+    private static class CompressAsyncTask extends AsyncTask<String, Integer, String> {
 
         private Bitmap bitmap;
         private int bitmapWidth;
@@ -120,14 +119,20 @@ public class NativeUtil {
     /**
      * JNI 压缩图片方法
      *
-     * @return 压缩状态,1 成功
+     * @param bit           the Bitmap object
+     * @param w             the Bitmap width
+     * @param h             the Bitmap height
+     * @param quality       the bitmap compress percent
+     * @param fileNameBytes the path to compress
+     * @param optimize      miss
+     * @return 压缩状态, 1 成功
      */
     public static native String compressBitmap(Bitmap bit,
-                                                int w,
-                                                int h,
-                                                int quality,
-                                                byte[] fileNameBytes,
-                                                boolean optimize);
+                                               int w,
+                                               int h,
+                                               int quality,
+                                               byte[] fileNameBytes,
+                                               boolean optimize);
 
 
 }

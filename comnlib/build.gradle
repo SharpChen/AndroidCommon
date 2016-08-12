@@ -17,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -36,7 +40,7 @@ publish{
     userOrg = 'sharpchen'
     groupId = 'cn.opensrc.comnlib'
     artifactId = 'tools'
-    publishVersion = '1.0.0'
+    publishVersion = '1.1.0'
     desc = 'a common lib of android'
     website = 'https://github.com/SharpChen/AndroidCommon'
 }

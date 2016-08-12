@@ -19,7 +19,8 @@ import cn.opensrc.comnlib.constants.DirConstants;
  * Revisions:
  */
 public final class AudioUtils {
-    private AudioUtils(){}
+    private AudioUtils() {
+    }
 
     private static MediaPlayer mMediaPlayer;
     private static MediaRecorder mMediaRecorder;
@@ -37,6 +38,8 @@ public final class AudioUtils {
 
     /**
      * 获取录音的文件路径
+     *
+     * @return the audio record path
      */
     public static String getAudioFilePath() {
         return audioFilePath;
@@ -44,6 +47,8 @@ public final class AudioUtils {
 
     /**
      * 设置录音的保存路径
+     *
+     * @param savePath 录音文件保存路径
      */
     public static void setAudioFilePath(String savePath) {
 
@@ -72,6 +77,8 @@ public final class AudioUtils {
 
     /**
      * 开始录音（带录音图片）
+     *
+     * @param rcdingImgHandler 录音音量大小接收 Handler
      */
     public static void startRecording(final Handler rcdingImgHandler) {
 
@@ -112,12 +119,14 @@ public final class AudioUtils {
                 }
             };
 
-        mImgTimer.schedule(mImgTimerTask,1000,200);
+        mImgTimer.schedule(mImgTimerTask, 1000, 200);
 
     }
 
     /**
      * 音量监听
+     *
+     * @param rcdingImgHandler 录音音量大小接收 Handler
      */
     private static void listenVolume(Handler rcdingImgHandler) {
 
@@ -165,14 +174,14 @@ public final class AudioUtils {
      */
     public static void stopRecording() {
 
-        if (mImgTimer != null){
+        if (mImgTimer != null) {
 
             mImgTimer.cancel();
             mImgTimer = null;
 
         }
 
-        if (mImgTimerTask != null){
+        if (mImgTimerTask != null) {
 
             mImgTimerTask.cancel();
             mImgTimerTask = null;
@@ -197,6 +206,8 @@ public final class AudioUtils {
 
     /**
      * 开始播放音频
+     *
+     * @param audioFilePath 录音文件路径
      */
     public static void startPlaying(String audioFilePath) {
 
@@ -277,6 +288,8 @@ public final class AudioUtils {
 
     /**
      * 获取音频是否播放完毕状态
+     *
+     * @return 当前是否有录音正在播放
      */
     public static boolean isPlaying() {
 

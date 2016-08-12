@@ -19,9 +19,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
@@ -79,7 +76,8 @@ public final class ImgUtils {
     /**
      * 根据图片id获取 Bitmap
      *
-     * @param id 图片id
+     * @param context Application Context
+     * @param id      图片id
      * @return Bitmap Object of the image
      */
     public static Bitmap getBitmapFromRes(Context context, int id) {
@@ -106,9 +104,10 @@ public final class ImgUtils {
     /**
      * 保存 Bitmap 到手机
      *
-     * @param bmp  保存的图片
-     * @param path 保存的路径
-     * @param name 保存的文件名
+     * @param bmp      保存的图片
+     * @param path     保存的路径
+     * @param name     保存的文件名
+     * @param listener 保存监听器
      */
     public static void saveBitmap2Phone(Bitmap bmp, String path, String name, OnSaveBitmap2PhoneListener listener) {
 
@@ -119,6 +118,7 @@ public final class ImgUtils {
                 || "".equals(name))
             throw new RuntimeException("save bitmap error in saveBitmap2Phone method!");
 
+        FileUtils.makeDir(path);
         new SaveBitmap2PhoneAsyncTask(bmp, listener).execute(path, name);
 
     }
@@ -244,6 +244,7 @@ public final class ImgUtils {
                                              final String compressToPath,
                                              final boolean optimize,
                                              final OnImgCompressListener listener) {
+
         NativeUtil.compressBitmap(bitmap, compressQuality, compressToPath, optimize, listener);
     }
 
@@ -431,26 +432,6 @@ public final class ImgUtils {
             listener.onSuccess(s);
         }
 
-    }
-
-    public static Bitmap getbitmap(String imageUri) {
-        // 显示网络上的图片
-        Bitmap bitmap = null;
-        try {
-            URL myFileUrl = new URL(imageUri);
-            HttpURLConnection conn = (HttpURLConnection) myFileUrl
-                    .openConnection();
-            conn.setDoInput(true);
-            conn.connect();
-            InputStream is = conn.getInputStream();
-            bitmap = BitmapFactory.decodeStream(is);
-            is.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return bitmap;
     }
 
 }

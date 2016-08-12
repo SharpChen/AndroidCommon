@@ -13,7 +13,8 @@ import java.io.InputStream;
  * Revisions:
  */
 public final class FileUtils {
-    private FileUtils(){}
+    private FileUtils() {
+    }
 
     /**
      * 创建目录
@@ -43,6 +44,7 @@ public final class FileUtils {
     /**
      * 获取指定文件夹下所有文件大小
      *
+     * @param dirPath 指定目录
      * @return the directory size in KB
      */
     public static double getSpecifyDirSize(String dirPath) {
@@ -84,6 +86,7 @@ public final class FileUtils {
 
     /**
      * 获取单个文件的大小
+     *
      * @param filePath the file path
      * @return the file size in kb
      */
@@ -102,6 +105,7 @@ public final class FileUtils {
 
     /**
      * 删除指定文件
+     *
      * @param filePath the delete filepath
      */
     public static void delSpecifyFile(String filePath) {
@@ -168,7 +172,8 @@ public final class FileUtils {
 
     /**
      * 复制文件
-     * @param oriFile original file
+     *
+     * @param oriFile    original file
      * @param copiedFile the original file copy
      */
     public static void copyFile(File oriFile, File copiedFile) {
@@ -208,7 +213,6 @@ public final class FileUtils {
         }
 
     }
-
 
 
 }

@@ -76,7 +76,7 @@ public final class ResUtils {
      * Arbitrary files to save in their raw form.
      * To open these resources with a raw InputStream, call Resources.openRawResource() with the resource ID,
      * which is R.raw.filename.
-     * <p/>
+     *
      * However, if you need access to original file names and file hierarchy,
      * you might consider saving some resources in the assets/ directory (instead of res/raw/).
      * Files in assets/ are not given a resource ID, so you can read them only using AssetManager.
