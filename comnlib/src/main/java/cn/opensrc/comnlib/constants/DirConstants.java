@@ -16,7 +16,7 @@ public class DirConstants {
     // 二级目录
     public static final String DIR_AUDIO     = DIR_ROOT + "Audio/";
     public static final String DIR_DOWNLOAD  = DIR_ROOT + "Download/";
-    public static final String DIR_IMAGE     = DIR_ROOT + "Image/";
+    public static final String DIR_IMAGE     = DIR_ROOT + "TempImg/";
     public static final String DIR_TEXT      = DIR_ROOT + "Text/";
     public static final String DIR_VIDEO     = DIR_ROOT + "Video/";
 
