@@ -41,7 +41,7 @@ publish{
     userOrg = 'sharpchen'
     groupId = 'cn.opensrc.comnlib'
     artifactId = 'tools'
-    publishVersion = '1.2.0'
+    publishVersion = "$rootProject.versionName"
     desc = 'a common lib of android'
     website = 'https://github.com/SharpChen/AndroidCommon'
 }

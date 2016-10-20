@@ -1,18 +1,18 @@
 ## 功能
-Android 常用工具类,谁用谁知道.^ _ ^
+Android 常用工具类
 ## 使用
 ### Gradle
-    compile 'cn.opensrc.comnlib:tools:1.2.0'
+    compile 'cn.opensrc.comnlib:tools:1.2.1'
 ### Maven
     <dependency>
         <groupId>cn.opensrc.comnlib</groupId>
         <artifactId>tools</artifactId>
-        <version>1.2.0</version>
+        <version>1.2.1</version>
         <type>pom</type>
     </dependency>
 ### lvy
 
-    <dependency org='cn.opensrc.comnlib' name='tools' rev='1.2.0'>
+    <dependency org='cn.opensrc.comnlib' name='tools' rev='1.2.1'>
         <artifact name='$AID' ext='pom'></artifact>
     </dependency>
 
