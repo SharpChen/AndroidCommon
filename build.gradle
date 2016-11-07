@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.0'
+        classpath 'com.android.tools.build:gradle:2.2.2'
         classpath 'com.novoda:bintray-release:0.3.4'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -26,16 +26,16 @@ task clean(type: Delete) {
 ext {
     // Sdk and tools
     minSdkVersion = 14
-    targetSdkVersion = 24
-    compileSdkVersion = 24
-    buildToolsVersion = '24.0.2'
+    targetSdkVersion = 25
+    compileSdkVersion = 25
+    buildToolsVersion = '25'
 
     // appVersion
-    versionCode = 121
-    versionName = "1.2.1"
+    versionCode = 122
+    versionName = "1.2.2"
 
     // App dependencies
-    supportLibraryVersion = '24.2.1'
+    supportLibraryVersion = '25.0.0'
     guavaVersion = '19.0'
     rxJavaVersion = '1.1.8'
     rxAndroidVersion = '1.2.1'

@@ -30,6 +30,9 @@ public class GroupItemDecoration extends RecyclerView.ItemDecoration {
     private final int DRAW = 0;
     private final int DRAW_COVER = 1;
     private boolean isTopHover = true;
+    public static final int ANI_TRANSLATE = 2;
+    public static final int ANI_CLIP = 3;
+    private int topAnimation;
 
     public GroupItemDecoration(List<GroupDataBean> mGroupDataBeans) {
         if (mGroupDataBeans == null)
@@ -71,7 +74,35 @@ public class GroupItemDecoration extends RecyclerView.ItemDecoration {
         if (!isTopHover) return;
         int pos = ((LinearLayoutManager) parent.getLayoutManager()).findFirstVisibleItemPosition();
         View itemView = parent.findViewHolderForLayoutPosition(pos).itemView;
+        // group draw animation
+        boolean flag = false;
+        String curFirstChar = mGroupDataBeans.get(pos).getFirstLetter();
+        if (pos + 1 < mGroupDataBeans.size()) {
+            if (null != curFirstChar && !curFirstChar.equalsIgnoreCase(mGroupDataBeans.get(pos + 1).getFirstLetter())) {
+                if (itemView.getHeight() + itemView.getTop() < groupDividerHeight) {
+                    c.save();
+                    flag = true;
+                    switch (topAnimation) {
+
+                        case ANI_TRANSLATE:
+                            c.translate(0, itemView.getHeight() + itemView.getTop() - groupDividerHeight);
+                            break;
+                        case ANI_CLIP:
+                            c.clipRect(parent.getPaddingLeft(), parent.getPaddingTop(), parent.getRight() - parent.getPaddingRight(),
+                                    parent.getPaddingTop() + itemView.getTop()+itemView.getHeight());
+                            break;
+                        default:
+                            c.translate(0, itemView.getHeight() + itemView.getTop() - groupDividerHeight);
+                            break;
+
+                    }
+
+                }
+            }
+        }
         drawGroup(c,parent,itemView,DRAW_COVER);
+        if (flag)
+            c.restore();
     }
 
     /**
@@ -171,6 +202,14 @@ public class GroupItemDecoration extends RecyclerView.ItemDecoration {
      */
     public void setTopHover(boolean topHover) {
         isTopHover = topHover;
+    }
+
+    /**
+     *
+     * @param topAnimation value is the animation type， ANI_TRANSLATE and ANI_CLIP
+     */
+    public void setTopAnimation(int topAnimation) {
+        this.topAnimation = topAnimation;
     }
 
 }
